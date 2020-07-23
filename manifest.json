@@ -1,0 +1,124 @@
+{
+  "name": "Salesforce Event Stream [BETA]",
+  "tags": [
+    "outgoing",
+    "oneColumn",
+    "batch",
+    "batch-accounts",
+    "smart-notifier"
+  ],
+  "description": "Stream Hull User Events as Platform Events to Salesforce",
+  "readme": "readme.md",
+  "tabs": [],
+  "version": "0.1.0",
+  "source": "salesforce",
+  "logo": "logo.png",
+  "picture": "picture.png",
+  "ui": false,
+  "settings": [],
+  "private_settings": [{
+      "name": "sfdc_environment",
+      "type": "string",
+      "title": "Salesforce Environment",
+      "description": "Specify the environment to connect to.",
+      "enum": ["production", "sandbox"],
+      "default": "production"
+    },
+    {
+      "name": "sfdc_api_version",
+      "type": "string",
+      "title": "Salesforce API Version",
+      "description": "Specify the version of the Salesforce API to use.",
+      "enum": ["v49.0", "v48.0", "v47.0", "v46.0", "v45.0"],
+      "default": "v49.0"
+    },
+    {
+      "name": "sfdc_client_id",
+      "type": "string",
+      "title": "Salesforce OAuth Client ID",
+      "description": "Specify the Client ID of your Custom Connected App."
+    },
+    {
+      "name": "sfdc_client_secret",
+      "type": "string",
+      "title": "Salesforce OAuth Client Secret",
+      "description": "Specify the Client Secret of your Custom Connected App."
+    },
+    {
+      "name": "event_mappings",
+      "type": "array",
+      "format": "table",
+      "title": "Event Mappings",
+      "description": "Specify which Hull Events map to Salesforce Platform Events.",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "hull": {
+            "title": "Hull",
+            "format": "event",
+            "type": "string"
+          },
+          "service": {
+            "title": "Salesforce",
+            "type": "string",
+            "format": "select",
+            "options": {
+              "loadOptions": "/meta/service/platformevents"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "user_synchronized_segments",
+      "title": "User Filter",
+      "description": "Stream Events for Hull Users as Salesforce Platform Events when they are part of one of these segments.",
+      "type": "array",
+      "format": "segment",
+      "default": [],
+      "options": {
+        "standard": {
+          "ALL": "All Users"
+        }
+      }
+    },
+    {
+      "name": "user_filter_only_existing",
+      "title": "Send only for existing Contacts or Leads?",
+      "description": "In addition to the **User Filter** above, limit events to be only sent if the Hull user is an existing Contact or Lead in Salesforce.",
+      "type": "boolean",
+      "default": false
+    }
+  ],
+  "json": [{
+    "name": "oauth",
+    "format": "oauth",
+    "type": "string",
+    "url": "/oauth"
+  }],
+  "schedules": [],
+  "subscriptions": [{
+    "url": "/smart-notifier"
+  }],
+  "settings_sections": [{
+      "title": "Connection",
+      "description": "Configure the parameters to establish a connection to your Salesforce Instance.",
+      "properties": [
+        "private_settings.sfdc_environment",
+        "private_settings.sfdc_api_version",
+        "private_settings.sfdc_client_id",
+        "private_settings.sfdc_client_secret",
+        "json.oauth"
+      ]
+    },
+    {
+      "title": "Data Flow",
+      "properties": [
+        "private_settings.event_mappings",
+        "private_settings.user_synchronized_segments",
+        "private_settings.user_filter_only_existing"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+[{
+  "id": "OPERATION_SENDUSERMESSAGES_START",
+  "code": "10-001",
+  "component": "SyncAgent",
+  "message": "Entered sending user messages..."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_SUCCESS",
+  "code": "10-002",
+  "component": "SyncAgent",
+  "message": "Successfully sent user messages."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_NOOP",
+  "code": "10-003",
+  "component": "SyncAgent",
+  "message": "Detected no-op for sending user messages. None of the messages satisfy the filtering criteria."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_INVALIDCONFIG",
+  "code": "10-004",
+  "component": "SyncAgent",
+  "message": "The connector has an invalid or insufficient configuration, please check the settings. No data will be sent to Salesforce."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_BATCHNOTSUPPORTED",
+  "code": "10-005",
+  "component": "SyncAgent",
+  "message": "The connector cannot handle batch operations, because events in Hull cannot be replayed."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_NOVALIDMAPPING",
+  "code": "10-006",
+  "component": "SyncAgent",
+  "message": "No valid mapping found for the given Hull event. Skipping processing."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_SKIPFINAL",
+  "code": "10-007",
+  "component": "SyncAgent",
+  "message": "Cannot send Hull event to Salesforce."
+}, {
+  "id": "OPERATION_LISTMETASERVICE_START",
+  "code": "11-001",
+  "component": "SyncAgent",
+  "message": "Entered listing of metadata..."
+}, {
+  "id": "OPERATION_LISTMETASERVICE_SUCCESS",
+  "code": "11-002",
+  "component": "SyncAgent",
+  "message": "Successfully listed metadata."
+}, {
+  "id": "OPERATION_CONNECTORSTATUS_START",
+  "code": "12-001",
+  "component": "SyncAgent",
+  "message": "Entered checking status of connector..."
+}, {
+  "id": "OPERATION_CONNECTORSTATUS_SUCCESS",
+  "code": "12-002",
+  "component": "SyncAgent",
+  "message": "Successfully checked status of connect."
+}, {
+  "id": "OPERATION_CONNECTORSTATUS_STARTHULLAPI",
+  "code": "12-003",
+  "component": "SyncAgent",
+  "message": "Sending connector status to Hull API..."
+}, {
+  "id": "OPERATION_AUTHSTATUS_START",
+  "code": "13-001",
+  "component": "SyncAgent",
+  "message": "Entered checking authentication status of connector..."
+}, {
+  "id": "OPERATION_AUTHSTATUS_SUCCESS",
+  "code": "13-002",
+  "component": "SyncAgent",
+  "message": "Successfully checked authentication status of connector: Authorized."
+}, {
+  "id": "OPERATION_AUTHSTATUS_UNAUTHORIZED",
+  "code": "13-003",
+  "component": "SyncAgent",
+  "message": "Successfully checked authentication status of connector: Unauthorized."
+}, {
+  "id": "OPERATION_AUTHTOKENFROMCODE_START",
+  "code": "14-001",
+  "component": "SyncAgent",
+  "message": "Entered getting OAuth Token from Code..."
+}, {
+  "id": "OPERATION_AUTHTOKENFROMCODE_SUCCESS",
+  "code": "14-002",
+  "component": "SyncAgent",
+  "message": "Successfully exchanged Code for OAuth Token via Salesforce API."
+}, {
+  "id": "OPERATION_READCACHEDRESULT_START",
+  "code": "31-001",
+  "component": "CachingUtil",
+  "message": "Start reading cached API result..."
+}, {
+  "id": "OPERATION_READCACHEDRESULT_STARTAPIEXEC",
+  "code": "31-002",
+  "component": "CachingUtil",
+  "message": "Reading cached data didn't yield a result, executing API call..."
+}, {
+  "id": "OPERATION_READCACHEDRESULT_STARTSAVEREDIS",
+  "code": "31-003",
+  "component": "CachingUtil",
+  "message": "Successfully retrieved API result, storing data in cache..."
+}, {
+  "id": "OPERATION_READCACHEDRESULT_SUCCESSSAVEREDIS",
+  "code": "31-004",
+  "component": "CachingUtil",
+  "message": "Successfully stored API result in cache."
+}, {
+  "id": "OPERATION_READCACHEDRESULT_SUCCESSSERVINGCACHE",
+  "code": "31-005",
+  "component": "CachingUtil",
+  "message": "Serving API result from Redis cache."
+}]

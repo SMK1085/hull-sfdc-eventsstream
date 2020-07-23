@@ -1,0 +1,56 @@
+[{
+  "id": "OPERATION_READCACHEDRESULT_FAILREDISREAD",
+  "code": "31-001",
+  "component": "CachingUtil",
+  "message": "Failed to read cached result from Redis."
+}, {
+  "id": "OPERATION_READCACHEDRESULT_FAILREDISSAVE",
+  "code": "31-002",
+  "component": "CachingUtil",
+  "message": "Failed to store API result in Redis cache."
+}, {
+  "id": "OPERATION_READCACHEDRESULT_FAILAPICALL",
+  "code": "31-003",
+  "component": "CachingUtil",
+  "message": "Failed to call API. No result will be stored in Redis cache."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_UNHANDLED",
+  "code": "10-001",
+  "component": "SyncAgent",
+  "message": "Failed to process user messages due to an unhandled error."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_DESCRIBESOBJECTFAILED",
+  "code": "10-002",
+  "component": "SyncAgent",
+  "message": "Failed to obtain the fields meta data for the given sObject via Salesforce API."
+}, {
+  "id": "OPERATION_SENDUSERMESSAGES_INSERTPEFAILED",
+  "code": "10-003",
+  "component": "SyncAgent",
+  "message": "Failed to insert the given platform event via Salesforce API."
+}, {
+  "id": "OPERATION_LISTMETASERVICE_FAILRETRIEVE",
+  "code": "11-001",
+  "component": "SyncAgent",
+  "message": "Failed to retrieve metadata via the Salesforce API."
+}, {
+  "id": "OPERATION_LISTMETASERVICE_UNHANDLED",
+  "code": "11-002",
+  "component": "SyncAgent",
+  "message": "Failed to retrieve metadata via the Salesforce API due to an unhandled error."
+}, {
+  "id": "OPERATION_CONNECTORSTATUS_UNHANDLED",
+  "code": "12-001",
+  "component": "SyncAgent",
+  "message": "Failed to determine the status of the connector due to an unhandled error."
+}, {
+  "id": "OPERATION_AUTHSTATUS_UNHANDLED",
+  "code": "12-001",
+  "component": "SyncAgent",
+  "message": "Failed to determine the authorization status of the connector due to an unhandled error."
+}, {
+  "id": "OPERATION_AUTHTOKENFROMCODE_UNHANDLED",
+  "code": "14-001",
+  "component": "SyncAgent",
+  "message": "Failed to exchange Code for OAuth Token via Salesforce API due to unhandled error."
+}]
