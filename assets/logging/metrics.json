@@ -1,0 +1,6 @@
+[{
+  "id": "OPERATION_SENDUSERMESSAGES_COUNT",
+  "code": "10-001",
+  "component": "SyncAgent",
+  "metricKey": "SN-USERUPDATE-MSG"
+}]

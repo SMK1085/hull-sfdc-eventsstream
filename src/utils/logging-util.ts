@@ -2,6 +2,7 @@ import { find, isNil } from "lodash";
 import { LogPayload } from "../core/connector";
 import opsDefinitions from "../../assets/logging/operational.json";
 import errorDefinitions from "../../assets/logging/exceptions.json";
+import metricDefinitions from "../../assets/logging/metrics.json";
 
 export class LoggingUtil {
   private readonly appId: string;
@@ -71,6 +72,30 @@ export class LoggingUtil {
       message: message ? message : def.message,
       correlationKey,
       errorDetails,
+    };
+
+    return log;
+  }
+
+  public composeMetricMessage(
+    id: string,
+    correlationKey?: string,
+    metricValue: number = 1,
+  ): LogPayload | undefined {
+    let def = find(metricDefinitions, { id });
+    if (isNil(def)) {
+      return undefined;
+    }
+
+    const log: LogPayload = {
+      appId: this.appId,
+      channel: "metric",
+      code: `MET-${def.code}`,
+      component: def.component,
+      tenantId: this.tenantId,
+      correlationKey,
+      metricKey: def.metricKey,
+      metricValue,
     };
 
     return log;

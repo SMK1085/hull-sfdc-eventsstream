@@ -63,14 +63,11 @@ export class SyncAgent {
       autoRefresh: true,
     };
     this.diContainer.register("nforceOptions", asValue(nforceOptions));
-    this.diContainer.register(
-      "serviceClient",
-      asClass(ServiceClient).singleton(),
-    );
-    this.diContainer.register("filterUtil", asClass(FilterUtil).singleton());
-    this.diContainer.register("mappingUtil", asClass(MappingUtil).singleton());
-    this.diContainer.register("loggingUtil", asClass(LoggingUtil).singleton());
-    this.diContainer.register("cachingUtil", asClass(CachingUtil).singleton());
+    this.diContainer.register("serviceClient", asClass(ServiceClient).scoped());
+    this.diContainer.register("filterUtil", asClass(FilterUtil).scoped());
+    this.diContainer.register("mappingUtil", asClass(MappingUtil).scoped());
+    this.diContainer.register("loggingUtil", asClass(LoggingUtil).scoped());
+    this.diContainer.register("cachingUtil", asClass(CachingUtil).scoped());
   }
 
   /**
