@@ -79,7 +79,7 @@ export class MappingUtil {
     ) {
       set(
         result,
-        `serviceObject.data.User_Email__c`,
+        `serviceObject.data.${this.getDefaultFieldName("User_Email")}`,
         get(envelope.message.user, "email"),
       );
     }
@@ -92,7 +92,7 @@ export class MappingUtil {
     ) {
       set(
         result,
-        `serviceObject.data.User_External_ID__c`,
+        `serviceObject.data.${this.getDefaultFieldName("User_External_ID")}`,
         get(envelope.message.user, "external_id"),
       );
     }
@@ -106,7 +106,7 @@ export class MappingUtil {
     ) {
       set(
         result,
-        `serviceObject.data.Contact_ID__c`,
+        `serviceObject.data.${this.getDefaultFieldName("Contact_ID")}`,
         get(envelope.message.user, "traits_salesforce_contact/id"),
       );
     }
@@ -118,7 +118,7 @@ export class MappingUtil {
     ) {
       set(
         result,
-        `serviceObject.data.Lead_ID__c`,
+        `serviceObject.data.${this.getDefaultFieldName("Lead_ID")}`,
         get(envelope.message.user, "traits_salesforce_lead/id"),
       );
     }
@@ -130,7 +130,7 @@ export class MappingUtil {
     ) {
       set(
         result,
-        `serviceObject.data.Account_ID__c`,
+        `serviceObject.data.${this.getDefaultFieldName("Account_ID")}`,
         get(envelope.message.account, "salesforce/id"),
       );
     }
