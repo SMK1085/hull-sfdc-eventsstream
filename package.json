@@ -22,7 +22,7 @@
     "lint--watch": "onchange 'src/**/*' --initial --kill --delay 1000  -- npm run lint",
     "lint-eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
     "lint-markdown": "markdownlint --ignore coverage --ignore dist --ignore node_modules '**/*.md' '.**/**/*.md'",
-    "ngrok": "ngrok http 8097 --subdomain=hull-sfdc-eventsstream",
+    "ngrok": "ngrok http 8097 --subdomain=hull-sfdc-eventsstream --region=eu",
     "ngrokfree": "ngrok http 8097",
     "start": "pm2-runtime start ecosystem.config.js",
     "start--dev": "NODE_ENV=development npm run start",

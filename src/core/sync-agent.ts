@@ -588,6 +588,7 @@ export class SyncAgent {
 
       return result;
     } catch (error) {
+      console.log(error);
       logger.error(
         loggingUtil.composeErrorMessage(
           "OPERATION_LISTMETASERVICE_UNHANDLED",
