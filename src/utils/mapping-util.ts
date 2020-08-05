@@ -52,9 +52,7 @@ export class MappingUtil {
       notes: envelope.notes ? envelope.notes : [],
       serviceObject: {
         sObject,
-        data: {
-          Event_Name__c: event.event,
-        },
+        data: {},
       },
     };
 
@@ -70,6 +68,12 @@ export class MappingUtil {
         result.notes = [VALIDATION_SKIP_USEREVENT_MISSINGNAME(sObject)];
       }
       return result;
+    } else {
+      set(
+        result,
+        `serviceObject.data.${this.getDefaultFieldName("Event_Name")}`,
+        event.event,
+      );
     }
 
     if (

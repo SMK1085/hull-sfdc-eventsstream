@@ -40,7 +40,13 @@ export interface HullSfdcPlatformEvent {
   Account_ID__c?: string | null;
   User_Email__c?: string | null;
   User_External_ID__c?: string | null;
-  Event_Name__c: string;
+  Event_Name__c?: string;
+  contact_id__c?: string | null;
+  lead_id__c?: string | null;
+  account_id__c?: string | null;
+  user_email__c?: string | null;
+  user_external_id__c?: string | null;
+  event_name__c?: string;
   [key: string]: boolean | Date | string | number | null | undefined;
 }
 
