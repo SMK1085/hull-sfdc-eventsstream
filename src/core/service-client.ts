@@ -1,5 +1,5 @@
 import nforce from "nforce";
-// import nforceMeta from "nforce-metadata";
+import nforceMeta from "nforce-metadata";
 import {
   NforceAuthTokenResponse,
   ApiResultObject,
@@ -16,8 +16,14 @@ export class ServiceClient {
   private readonly org: any;
 
   constructor(options: any) {
+    try {
+      nforceMeta(nforce);
+    } catch (error) {
+      // fail silently
+    }
     this.org = nforce.createConnection({
       ...options.nforceOptions,
+      plugins: ["meta"],
     });
   }
 
