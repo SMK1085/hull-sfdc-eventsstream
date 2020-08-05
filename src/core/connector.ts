@@ -13,6 +13,7 @@ export interface PrivateSettings {
   sfdc_scope?: string | null;
   user_synchronized_segments: string[];
   user_filter_only_existing?: boolean | null;
+  sfdc_naming_convention?: "standard" | "lowercase" | null;
 }
 
 export interface HullEventMapping {

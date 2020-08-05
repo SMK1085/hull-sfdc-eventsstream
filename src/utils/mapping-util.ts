@@ -14,6 +14,14 @@ import {
 } from "../core/messages";
 import { forIn, set, isNil, get, forEach, has } from "lodash";
 
+type DefaultFieldType =
+  | "Event_Name"
+  | "User_Email"
+  | "User_External_ID"
+  | "Contact_ID"
+  | "Lead_ID"
+  | "Account_ID";
+
 export class MappingUtil {
   readonly privateSettings: PrivateSettings;
   readonly logger: Logger;
@@ -51,7 +59,10 @@ export class MappingUtil {
     };
 
     const configuredFieldNames = fields.map((f) => f.name);
-    if (configuredFieldNames.includes("Event_Name__c") == false) {
+    if (
+      configuredFieldNames.includes(this.getDefaultFieldName("Event_Name")) ==
+      false
+    ) {
       result.operation = "skip";
       if (result.notes) {
         result.notes.push(VALIDATION_SKIP_USEREVENT_MISSINGNAME(sObject));
@@ -62,7 +73,8 @@ export class MappingUtil {
     }
 
     if (
-      configuredFieldNames.includes("User_Email__c") === true &&
+      configuredFieldNames.includes(this.getDefaultFieldName("User_Email")) ===
+        true &&
       !isNil(get(envelope.message.user, "email", undefined))
     ) {
       set(
@@ -73,7 +85,9 @@ export class MappingUtil {
     }
 
     if (
-      configuredFieldNames.includes("User_External_ID__c") === true &&
+      configuredFieldNames.includes(
+        this.getDefaultFieldName("User_External_ID"),
+      ) === true &&
       !isNil(get(envelope.message.user, "external_id", undefined))
     ) {
       set(
@@ -84,7 +98,8 @@ export class MappingUtil {
     }
 
     if (
-      configuredFieldNames.includes("Contact_ID__c") === true &&
+      configuredFieldNames.includes(this.getDefaultFieldName("Contact_ID")) ===
+        true &&
       !isNil(
         get(envelope.message.user, "traits_salesforce_contact/id", undefined),
       )
@@ -97,7 +112,8 @@ export class MappingUtil {
     }
 
     if (
-      configuredFieldNames.includes("Lead_ID__c") === true &&
+      configuredFieldNames.includes(this.getDefaultFieldName("Lead_ID")) ===
+        true &&
       !isNil(get(envelope.message.user, "traits_salesforce_lead/id", undefined))
     ) {
       set(
@@ -108,7 +124,8 @@ export class MappingUtil {
     }
 
     if (
-      configuredFieldNames.includes("Account_ID__c") === true &&
+      configuredFieldNames.includes(this.getDefaultFieldName("Account_ID")) ===
+        true &&
       !isNil(get(envelope.message.account, "salesforce/id", undefined))
     ) {
       set(
@@ -126,7 +143,7 @@ export class MappingUtil {
       .map((f) => f.name);
 
     forIn(event.properties, (v, k) => {
-      const fieldName = MappingUtil.createSalesforceFieldName(k);
+      const fieldName = this.createSalesforceFieldName(k);
       if (configuredFieldNames.includes(fieldName)) {
         set(result, `serviceObject.data.${fieldName}`, v);
       }
@@ -163,16 +180,51 @@ export class MappingUtil {
     return result;
   }
 
-  public static createSalesforceFieldName(str: string): string {
+  public createSalesforceFieldName(str: string): string {
     str += "";
     const strSplits = str.split("_");
     for (var i = 0; i < strSplits.length; i++) {
-      strSplits[i] =
-        strSplits[i].slice(0, 1).toUpperCase() +
-        strSplits[i].slice(1, strSplits[i].length);
+      if (this.privateSettings.sfdc_naming_convention === "lowercase") {
+        strSplits[i] = strSplits[i];
+      } else {
+        strSplits[i] =
+          strSplits[i].slice(0, 1).toUpperCase() +
+          strSplits[i].slice(1, strSplits[i].length);
+      }
     }
     strSplits.push("_c");
 
     return strSplits.join("_");
+  }
+
+  private getDefaultFieldName(defaultType: DefaultFieldType): string {
+    let result;
+    const useLowerCase =
+      this.privateSettings.sfdc_naming_convention === "lowercase";
+
+    switch (defaultType) {
+      case "Event_Name":
+        result = useLowerCase ? "event_name__c" : "Event_Name__c";
+        break;
+      case "User_Email":
+        result = useLowerCase ? "user_email__c" : "User_Email__c";
+        break;
+      case "User_External_ID":
+        result = useLowerCase ? "user_external_id__c" : "User_External_ID__c";
+        break;
+      case "Contact_ID":
+        result = useLowerCase ? "contact_id__c" : "Contact_ID__c";
+        break;
+      case "Lead_ID":
+        result = useLowerCase ? "lead_id__c" : "Lead_ID__c";
+        break;
+      case "Account_ID":
+        result = useLowerCase ? "account_id__c" : "Account_ID__c";
+        break;
+      default:
+        throw new Error(`Invalid default type: '${defaultType}'`);
+    }
+
+    return result;
   }
 }

@@ -45,6 +45,14 @@
       "description": "Specify the Client Secret of your Custom Connected App."
     },
     {
+      "name": "sfdc_naming_convention",
+      "type": "string",
+      "title": "Naming Convention",
+      "description": "Specify the naming convetion to use, either `standard` (e.g. Event_Name__c) or `lowercase` (e.g. event_name__c).",
+      "enum": ["standard", "lowercase"],
+      "default": "standard"
+    },
+    {
       "name": "event_mappings",
       "type": "array",
       "format": "table",
@@ -109,6 +117,7 @@
         "private_settings.sfdc_api_version",
         "private_settings.sfdc_client_id",
         "private_settings.sfdc_client_secret",
+        "private_settings.sfdc_naming_convention",
         "json.oauth"
       ]
     },
