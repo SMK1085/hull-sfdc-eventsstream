@@ -350,7 +350,7 @@ export class SyncAgent {
         ),
       );
     } catch (error) {
-      logger.alert(
+      logger.error(
         loggingUtil.composeErrorMessage(
           "OPERATION_SENDUSERMESSAGES_UNHANDLED",
           cloneDeep(error),
@@ -434,7 +434,7 @@ export class SyncAgent {
         cloneDeep(error),
         correlationKey,
       );
-      logger.alert(logPayload);
+      logger.error(logPayload);
       statusResult.status = "error";
       if (logPayload && logPayload.message) {
         statusResult.messages.push(logPayload.message);
@@ -495,7 +495,7 @@ export class SyncAgent {
         cloneDeep(error),
         correlationKey,
       );
-      logger.alert(logPayload);
+      logger.error(logPayload);
       // Re-throw error to make sure we do not redirect the user
       throw error;
     }
@@ -588,7 +588,7 @@ export class SyncAgent {
 
       return result;
     } catch (error) {
-      logger.alert(
+      logger.error(
         loggingUtil.composeErrorMessage(
           "OPERATION_LISTMETASERVICE_UNHANDLED",
           cloneDeep(error),
@@ -663,7 +663,7 @@ export class SyncAgent {
         cloneDeep(error),
         correlationKey,
       );
-      logger.alert(logPayload);
+      logger.error(logPayload);
       result.statusCode = 500;
       if (logPayload && logPayload.message) {
         result.message = logPayload.message;

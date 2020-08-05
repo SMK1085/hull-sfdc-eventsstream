@@ -33,7 +33,7 @@ export const oauthInitActionFactory = (): RequestHandler => {
       return Promise.resolve(true);
     } catch (error) {
       if (logger) {
-        logger.alert({
+        logger.error({
           code: `ERR-01-001`,
           message: `Unhandled exception at route '${req.method} ${req.url}'`,
           correlationKey,
@@ -72,7 +72,7 @@ export const oauthCallbackActionFactory = (): RequestHandler => {
       return Promise.resolve(true);
     } catch (error) {
       if (logger) {
-        logger.alert({
+        logger.error({
           code: `ERR-01-001`,
           message: `Unhandled exception at route '${req.method} ${req.url}'`,
           correlationKey,
@@ -106,7 +106,7 @@ export const oauthStatusActionFactory = (): RequestHandler => {
       return Promise.resolve(true);
     } catch (error) {
       if (logger) {
-        logger.alert({
+        logger.error({
           code: `ERR-01-001`,
           message: `Unhandled exception at route '${req.method} ${req.url}'`,
           correlationKey,

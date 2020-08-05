@@ -35,7 +35,7 @@ export const userUpdateHandlerFactory = (
       return Promise.resolve();
     } catch (error) {
       if (logger) {
-        logger.alert({
+        logger.error({
           code: `ERR-01-001`,
           message: `Unhandled exception at route '${options.req.method} ${options.req.url}'`,
           correlationKey,
