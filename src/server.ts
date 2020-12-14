@@ -7,7 +7,6 @@ import cors from "cors";
 import _ from "lodash";
 import { ClientOpts } from "redis";
 import { ConnectorRedisClient } from "./utils/redis-client";
-import LogzioWinstonTransport from "winston-logzio";
 import { initializeScope } from "./middleware/express-scope";
 
 export const server = (app: Application): Application => {
@@ -53,14 +52,7 @@ export const server = (app: Application): Application => {
           }`;
         }),
       ),
-    }),
-    new LogzioWinstonTransport({
-      token: process.env.LOGZIO_TOKEN as string,
-      host: "listener.logz.io",
-      protocol: "https",
-      name: loggerOptions.defaultMeta.service,
-      level: process.env.LOG_LEVEL || "error",
-    }),
+    })
   ];
 
   const globalLogger = createLogger(loggerOptions);
